@@ -10,7 +10,12 @@ const client = new OpenSeaStreamClient({
 
 client.connect();
 
-client.onItemListed('nuri-samurai', (event) => {
+client.onItemSold('*', (event) => {
     // handle event
-    console.log(event.payload.item.nft_id);
+    let chain = event.payload.item.chain.name;
+    if(chain == 'ethereum') {
+      console.log(event.payload.item.nft_id);
+    }
+    
+    //console.log(chain);
   });
